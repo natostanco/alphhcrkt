@@ -2,22 +2,22 @@ services:
 - docker
 script:
 - export SAVE=$PWD
-- docker build -t ubuhphdkr .
-- sudo ./docker-slim build --continue-after probe --http-probe ubuhphdkr
+- docker build -t ubuhphctr .
+- sudo ./docker-slim build --continue-after probe --http-probe ubuhphctr
 before_deploy:
 - cd
 - wget `curl -s https://api.github.com/repos/appc/docker2aci/releases | grep browser_download_url | head -n 1 | cut -d '"' -f 4` -O d2a.tar.gz
 - tar -zxf d2a.tar.gz && rm d2a.tar.gz && d2a=`ls | grep "docker2aci*"` && d2a=`basename $d2a` && alias d2a='${PWD}/${d2a}/docker2aci'
-- docker save -o ubuhphdkr.slim.tar ubuhphdkr.slim
-- ${PWD}/${d2a}/docker2aci ubuhphdkr.slim.tar
-- xz -9 -c ubuhphdkr.slim.tar > ubuhphdkr.slim.tar.xz
+- docker save -o ubuhphctr.slim.tar ubuhphctr.slim
+- ${PWD}/${d2a}/docker2aci ubuhphctr.slim.tar
+- xz -9 -c ubuhphctr.slim.tar > ubuhphctr.slim.tar.xz
 deploy:
   provider: releases
   api_key:
     secure: SDzo9pHowsVMLaYsHHt6g3f1AxI1wWpnrQCh0f+46k3VH5nt44uA4sOUKzOOB66xG0e3y1A+vgkrthnf/+FIwAp5gfuwosR0AuQuBT+82CmKnuyZFQa/wxANGYlt7R9jlAiuf10nahbi/oDI6K+Rv8erVxY92STk0rGzEkqfSBhgQu6TwPRYPMVZ6Lm5gkhbyqIxL4nZttNkE/yj1j+6pmZUpWc0UIH9PRhjOfvVQ9uPabnY5VKfxdNzeIN+DTSMe2wkpzMZ86BqDFzkhxWk2gyVD2PZ3wGGZkss5iUK+uEiEj+dZt2uYxWqD3v9TMrv410PLHTBBqVKTqL0PvPqM7kmIM7ysFTVyfjHF+vMjgHOye9IruVPhUITfhwNwPT9jJzHe6Qzb/m59Bwxc1WZ+nId+ioPiW75D2pHTnMYheLLaXKvSYUpq0k1g0OOMG8yVAHWKt+FrJcDMMVQIMcKlzCcbhPOocmvEB+FlS+vlk/FyU9OOxSJRreY+nAaoTGGwYJ6oStk6m/5G4ONZUGwzIXyaAkkCaO6CR8ZUwzHFCaWjuS+hQ4T2S2Z2Mhy4N8um8jsQSlAyCrOHdv2+Kmx0rFNLv5MTuqaiXLLxnAct7gQfTX4ygIzFPodFzLgb7pHU5i4AmG+YynRarABuNczKZHDqEkOzFXbl6orkE6Nsqk=
   file:
-  - ubuhphdkr.slim.tar.xz 
-  - ubuhphdkr.slim-latest.aci 
+  - ubuhphctr.slim.tar.xz 
+  - ubuhphctr.slim-latest.aci 
   skip_cleanup: true
   on:
     tags: true
