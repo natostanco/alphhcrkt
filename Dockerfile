@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:14.04
 
 ENTRYPOINT ["hhvm"]
 
@@ -11,12 +11,6 @@ RUN apt-get update
 RUN \
 	apt-get upgrade -y -q -o Dpkg::Options::="--force-confold" \
  && apt-get install hhvm -y -q
-#RUN mkdir -p /var/run/nginx \
-# && mkdir -p /etc/nginx \
-# && mkdir -p /var/log/nginx \
-# && mkdir -p /var/lib/nginx/tmp
-
-#VOLUME ["/etc/coconf/nginx","/etc/nginx"]
 
 EXPOSE 9000
 
