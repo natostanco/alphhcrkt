@@ -1,11 +1,11 @@
-FROM ubuntu:14.04
+FROM ubuntu:xenial
 
 ENTRYPOINT ["hhvm"]
 
 CMD ["--mode","server","--config","/etc/hhvm/php.ini","--config","/etc/hhvm/server.ini","--user","www-data","-vPidFile=/var/run/hhvm/pid"]
 
 RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5A16E7281BE7A449 \
- && echo "deb http://dl.hhvm.com/ubuntu trusty main" >> /etc/apt/sources.list
+ && echo "deb http://dl.hhvm.com/ubuntu xenial main" >> /etc/apt/sources.list
 
 RUN apt-get update
 RUN \
