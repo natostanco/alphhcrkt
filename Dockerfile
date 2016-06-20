@@ -10,7 +10,8 @@ RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5A16E7281BE7A4
 RUN apt-get update
 RUN \
 	apt-get upgrade -y -q -o Dpkg::Options::="--force-confold" \
- && apt-get install hhvm -y -q
+ && apt-get install hhvm -y -q \
+ && apt-get install libnuma1 -y -q
 
 EXPOSE 9000
 
