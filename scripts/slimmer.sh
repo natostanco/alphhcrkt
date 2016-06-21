@@ -7,7 +7,7 @@ pkg=$4
 
 docker build -t $cnt .
 
-docker run -it --rm -v $SAVE:/host --entrypoint "/bin/bash" $cnt "/host/scripts/lister.sh $pkg"
+docker run -it --rm -v $SAVE:/host --entrypoint "/bin/bash" $cnt "/host/scripts/lister.sh" "$pkg"
 
 sudo ./docker-slim build \
 	--entrypoint "/bin/bash" \
