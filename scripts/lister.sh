@@ -13,14 +13,14 @@ pkgfiles=`dpkg -L $pkg 2>/dev/null | grep -v -e "\/usr\/share" | grep -v -e "^\/
 depsfiles=''
 for i in $pkgdeps;
 do
-  depsfiles+=`dpkg -L $i 2>/dev/null | grep -v -e "\/usr\/share" | grep -v -e "^\/[^\/]*$"`
+  depsfiles+="\n"`dpkg -L $i 2>/dev/null | grep -v -e "\/usr\/share" | grep -v -e "^\/[^\/]*$"`
 done
 
 Rdepsfiles=''
 for i in $pkgRdeps;
 do
-  Rdepsfiles+=`dpkg -L $i 2>/dev/null | grep -v -e "\/usr\/share" | grep -v -e "^\/[^\/]*$"`
+  Rdepsfiles+="\n"`dpkg -L $i 2>/dev/null | grep -v -e "\/usr\/share" | grep -v -e "^\/[^\/]*$"`
 done
 
 all=`echo "$pkgfiles$depsfiles$Rdepsfiles" | sort -u`
-echo "$all" > /host/list.txt
+printf "$all" > /host/list.txt
