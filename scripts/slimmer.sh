@@ -9,6 +9,8 @@ docker build -t $cnt .
 
 docker run -it --rm -v $SAVE:/host --entrypoint "/bin/bash" $cnt "/host/scripts/lister.sh" "$pkg"
 
+$SAVE/phantomjs/phantomjs.sh
+
 sudo ./docker-slim build \
 	--entrypoint "/bin/bash" \
 	--cmd "/host/scripts/toucher.sh" \
