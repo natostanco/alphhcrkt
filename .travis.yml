@@ -7,7 +7,7 @@ env:
     - secure: "vN9SrI9dqShG6L5yXZdv+7vEsvJ6k4AHPrSRLVf1j5m4OaXfyRfvVq51QuHZszQ6+mAB3MhF4tw2shTqMYStkQ2L/z6E9sP4VOLDxOK+LwC84qyH8YVRm/eCyiZoYIqzXwSgPnsvlOoDdJRtR6n/Oozp9THLzXpsaX+5wQEOHP2Gzwy5YJnFMp/kV5V1oExPdHsRBQE8RZ6R5qag+6aZTdVTjODqEDoHo4V72WXXl8BO3tkplMTA+lcQ1cmpIdZ9EED7Wi0VM1/RvUI4ujrMrP/uqKiX4uoAV1Vy8QmrfzqeKB/3WLBpW4Y8h5M8v8BbKJq5ZGwCCT3bAX4Kzbnco0PySo0/0cnkYiSTJVRFRSNija4CWbiP6IiaQeSN5qYWifleShBHiv30haOt3VJ8pySGe+XH7o52l308sYS6a/iW4CmTYZaLV6sJjDSiX4XHqV4C7rgehrnrDGFzlX4FVxdbWHMcK6lF8RWsyjX8Td4Hok5xCqv0Eg5vWajN5wfyEDzKLlWw4QcTI3qNfZqDrqQfwrfbTvEXhxNfBjHUs/DC/sFAqZKoLQ6o2r0kwz+swmRAs7Cqp+Im7+GXc3QZV986RrP7CEYnsslPpXP5IsQdKQN2Ty8FjZbEtErtAF+GGx4IfFc6fK/iR7iZCiQnxdvVx9T12QNjniDaJyGcU+I="
 script:
 - export SAVE=$PWD cnt="ubuhphctr" slim=".slim" pkg="hhvm libnuma1 libre2-1v5"
-- ./scripts/slimmer.sh $SAVE $cnt $slim "$pkg"
+- sudo ./scripts/slimmer.sh $SAVE $cnt $slim "$pkg"
 before_deploy:
 - cd
 - wget `curl -s https://api.github.com/repos/appc/docker2aci/releases | grep browser_download_url
