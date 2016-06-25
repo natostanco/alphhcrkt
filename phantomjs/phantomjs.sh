@@ -7,4 +7,4 @@ sudo apt-get update && sudo apt-get install vim wget bzip2 fontconfig freetype* 
 wget -q --no-check-certificate -O ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
 tar -xjf ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C ${DIR}
 rm -f ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
-mv ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/* ${DIR}/phantomjs
+mv ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/* ${DIR}/
