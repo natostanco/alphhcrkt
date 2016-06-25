@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ev
+
 SAVE=$1
 cnt=$2
 slim=$3
