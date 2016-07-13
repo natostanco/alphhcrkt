@@ -3,7 +3,7 @@ cd
 pkg=$1
 
 apt update
-apt install apt-rdepends -y -q
+apt install apt-rdepends python -y -q
 
 pkgdeps=`apt-rdepends $pkg 2>/dev/null | grep -v -i depends | awk '{print $1}'`
 pkgRdeps=`apt-rdepends $pkg 2>/dev/null | grep -i depends | awk '{print $2}' | sort -u`
