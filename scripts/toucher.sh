@@ -1,6 +1,7 @@
 #!/bin/bash
 
 touch `cat /host/list.txt`
+touch `cat /host/manuallist.txt`
 
 /host/phantomjs/run.sh
 
