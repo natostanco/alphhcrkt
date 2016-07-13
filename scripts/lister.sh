@@ -24,3 +24,14 @@ done
 
 all=`echo "$pkgfiles$depsfiles$Rdepsfiles" | sort -u`
 printf "$all" > /host/list.txt
+
+include=( "/usr/bin/which" \
+          )
+
+for n in ${!include[*]}
+do
+find ${include[n]} >> /tmp/touch
+find ${include[n]} | xargs -I {} ldd {} 2>/dev/null | awk '{print $3}' | grep '/' | sort -u | xargs -I {} echo {} >> /tmp/touch
+done
+cat /tmp/touch | sort -u >> /host/manuallist.txt
+rm /tmp/touch
