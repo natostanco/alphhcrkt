@@ -26,6 +26,7 @@ all=`echo "$pkgfiles$depsfiles$Rdepsfiles" | sort -u`
 printf "$all" > /host/list.txt
 
 include=( "/usr/bin/which" \
+          "/bin/ps" \
           )
 
 for n in ${!include[*]}
