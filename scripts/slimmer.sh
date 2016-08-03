@@ -18,7 +18,7 @@ sudo ./docker-slim build \
 	--cmd "/host/scripts/toucher.sh" \
 	--mount $SAVE:/host \
 	--include-path /etc/ssl \
-	--continue-after 30 \
+	--continue-after 220 \
 	--http-probe $cnt
 
 
