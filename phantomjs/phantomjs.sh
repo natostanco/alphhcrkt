@@ -9,7 +9,7 @@ tar -xjf ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 -C ${DIR}
 rm -f ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
 mv ${DIR}/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/* ${DIR}/
 
-casper_V=`awk -f git-describe-remote-casper.awk https://github.com/casperjs/casperjs  | grep -o "[0-9][^-]*" | head -n 1`
+casper_V=`awk -f ${DIR}/git-describe-remote-casper.awk https://github.com/casperjs/casperjs  | grep -o "[0-9][^-]*" | head -n 1`
 
 wget --no-check-certificate https://github.com/casperjs/casperjs/archive/${casper_V}.tar.gz -O ${DIR}/casper.tar.gz
 tar -xf ${DIR}/casper.tar.gz  -C ${DIR}
