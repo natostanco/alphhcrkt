@@ -11,7 +11,7 @@ RUN apt-get update
 RUN \
 	apt-get upgrade -y -q -o Dpkg::Options::="--force-confold" \
  && apt-get install hhvm -y -q \
- && apt-get install libnuma1 -y -q
+ && apt-get install libnuma1 python -y -q
 
 EXPOSE 9000
 
