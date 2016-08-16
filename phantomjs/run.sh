@@ -2,6 +2,7 @@
 
 DIR=`dirname "$(readlink -f "$0")"`
 export SLIMERJSLAUNCHER=/usr/bin/firefox
+sed -i 's/MaxVersion=.*/MaxVersion=*/' /host/phantomjs/slimerjs/application.ini
 
 /host/phantomjs/bin/phantomjs ${DIR}/job.js
 timeout 180 /host/phantomjs/casper/bin/casperjs selftest
