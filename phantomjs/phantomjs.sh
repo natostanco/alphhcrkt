@@ -23,4 +23,4 @@ wget --no-check-certificate https://github.com/laurentj/slimerjs/archive/${slime
 tar -xf ${DIR}/slimer.tar.gz  -C ${DIR}
 rm -f ${DIR}/slimer.tar.gz
 mkdir -p ${DIR}/slimer
-mv ${DIR}/slimerjs-${casper_V}/* ${DIR}/slimer
+mv ${DIR}/slimerjs-${slimer_V}/* ${DIR}/slimer
