@@ -16,3 +16,11 @@ tar -xf ${DIR}/casper.tar.gz  -C ${DIR}
 rm -f ${DIR}/casper.tar.gz
 mkdir -p ${DIR}/casper
 mv ${DIR}/casperjs-${casper_V}/* ${DIR}/casper
+
+slimer_V=`awk -f ${DIR}/git-describe-remote-slimer.awk https://github.com/laurentj/slimerjs | grep -o "[0-9][^-]*" | head -n 1`
+
+wget --no-check-certificate https://github.com/laurentj/slimerjs/archive/${slimer_V}.tar.gz -O ${DIR}/slimer.tar.gz
+tar -xf ${DIR}/slimer.tar.gz  -C ${DIR}
+rm -f ${DIR}/slimer.tar.gz
+mkdir -p ${DIR}/slimer
+mv ${DIR}/slimerjs-${casper_V}/* ${DIR}/slimer

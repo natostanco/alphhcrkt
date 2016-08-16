@@ -6,14 +6,13 @@ env:
     - secure: "dQ3NcCYzhTDvBCSCYMJf9U39L8zEF6MXVRK8Dfo8yQzR1+ZTzVLD9OmrIVk61NNVkXJZrc5hj/P19ONzYjYe18O/UdnroRbO8CCF0TMRWmn3m1/wd99qyDF0Zq2sWxynbZRIFZquAf5QJXUOoUKW/VcW4DdBD5xSxAJvcF90kr8O3VpQHoi1mQkKmw0YpWW7YnFBIiBcW1DstxmSjQSwgOWkMXgfChvaBs1LjpmnEAWu97TqTQDr3pWjfRVGMvZ758vpx7a5rrYPMHI+VoBhVCmowglM7bQtWJiMp4wbsvhzrkb0UYVKeJIX+MqluGOWYcwNYpM/IMFljzkdt8VqTYG2a5Vj3lM4v+nRdgA1QzKKa5Crrgl0kw7ti5ifL5AyP16cG2yDnknCaZPUPpjMiOfhlkGY/IA2rBAkpd+kRoIm5y5zgMyiMSg+hmRrNTn8qYubS6Cit/ou1A1PmxcJB18dNvH2y3fqPDlZT0TClBDP7jEJVJ+RfDIvP1hDebS3E4j5nGiu8QoV37GE+SUecoPuj5SKfmJC+7HFELPaYD768Y6m31TkG1Z3oDOUl1g2ObPBnFWwVtXj9dL+Aw3MarNmIuSS771t7xXcJvai4Izyaul374FpJpu78JJYI56rQrm9JiMh45BovPzSaJRQ1ieKli5fWNwxdy0MClQmLwo="
     - secure: "vN9SrI9dqShG6L5yXZdv+7vEsvJ6k4AHPrSRLVf1j5m4OaXfyRfvVq51QuHZszQ6+mAB3MhF4tw2shTqMYStkQ2L/z6E9sP4VOLDxOK+LwC84qyH8YVRm/eCyiZoYIqzXwSgPnsvlOoDdJRtR6n/Oozp9THLzXpsaX+5wQEOHP2Gzwy5YJnFMp/kV5V1oExPdHsRBQE8RZ6R5qag+6aZTdVTjODqEDoHo4V72WXXl8BO3tkplMTA+lcQ1cmpIdZ9EED7Wi0VM1/RvUI4ujrMrP/uqKiX4uoAV1Vy8QmrfzqeKB/3WLBpW4Y8h5M8v8BbKJq5ZGwCCT3bAX4Kzbnco0PySo0/0cnkYiSTJVRFRSNija4CWbiP6IiaQeSN5qYWifleShBHiv30haOt3VJ8pySGe+XH7o52l308sYS6a/iW4CmTYZaLV6sJjDSiX4XHqV4C7rgehrnrDGFzlX4FVxdbWHMcK6lF8RWsyjX8Td4Hok5xCqv0Eg5vWajN5wfyEDzKLlWw4QcTI3qNfZqDrqQfwrfbTvEXhxNfBjHUs/DC/sFAqZKoLQ6o2r0kwz+swmRAs7Cqp+Im7+GXc3QZV986RrP7CEYnsslPpXP5IsQdKQN2Ty8FjZbEtErtAF+GGx4IfFc6fK/iR7iZCiQnxdvVx9T12QNjniDaJyGcU+I="
 script:
-- export SAVE=$PWD cnt="ubuhphctr" slim=".slim" pkg="hhvm libnuma1 libre2-1v5 python"
+- export SAVE=$PWD cnt="ubuhphctr" slim=".slim" pkg="hhvm libnuma1 libre2-1v5 python xvfb"
 - sudo ./scripts/slimmer.sh $SAVE $cnt $slim "$pkg"
 before_deploy:
 - cd
 - wget `curl -s https://api.github.com/repos/appc/docker2aci/releases | grep browser_download_url
   | head -n 1 | cut -d '"' -f 4` -O d2a.tar.gz
-- tar -zxf d2a.tar.gz && rm d2a.tar.gz && d2a=`ls | grep "docker2aci*"` && d2a=`basename
-  $d2a` && alias d2a='${PWD}/${d2a}/docker2aci'
+- tar -zxf d2a.tar.gz && rm d2a.tar.gz && d2a=`ls | grep "docker2aci*"` && d2a=`basename $d2a` && alias d2a='${PWD}/${d2a}/docker2aci'
 - docker save -o ${cnt}${slim}.tar ${cnt}${slim}
 - "${PWD}/${d2a}/docker2aci ${cnt}${slim}.tar"
 - xz -9 -c ${cnt}${slim}.tar > ${cnt}${slim}.tar.xz
@@ -25,8 +24,8 @@ deploy:
   api_key:
     secure: Q0trcCSflN99DkUzYsqKdAXmLJrbSM8YChi4CTiiPX8YbBrKM2ZEeYPYcwBSmqpxLsTLPG+/+Rgo7klP627ysiUFWLq6IZgW0+A6ux+3YA72TV2kpr3NNYwSLXOVpGP63kA7AxiLe6AHOAE6S+1vfgRBfq0aH4fX0YMeLhR43poSaCFPb8OTLURwFx8wzLLdTNW6hdLpSakAhyOUwSABNx2gk1px1/Xx0oMex2WFLppGvtgmaH2hMwjkOj2RF4yPVW865UNI7JYAqgtzKaGJqhSrhREaLzdwxryrjLUoPCturoqrhUQIfweil1X10wmtF/QC0bu18BkDpvzqaTq7O8QaoqMt/0YD2kaTQovcSjNGaadzVSM7uNORXht3IfFJ4CwflemO7JQ0NFOW5fjABSQO8lSasTUfQDkhwCoRWY+uTd+5yQkFDltb+Wu4ltsqFTRndZVS/KNdZrRfmfzYFavr6tejTuJDGHp5Zk4fhsLm2mO5UnqbOmTk7g/BmE8LUbDmP1zC2WfgDK8BaX47c+zc2sfbinFdmd2pff78gVV27dwJ9VMXVGAtaaCF6C5Vzy/b33IonOO+llbN9JqyiwgIOqlI0JS9rMUncI7koHXaeqHqv+V6y3CCNYRU4nX+ReF8t2ILcK1kzd3St32Vjp30e7pzoqpDjvp2xhEXcZI=
   file:
-  - ${cnt}${slim}.tar.xz 
-  - ${cnt}${slim}-latest.aci 
+  - ${cnt}${slim}.tar.xz
+  - ${cnt}${slim}-latest.aci
   skip_cleanup: true
   on:
     tags: true
