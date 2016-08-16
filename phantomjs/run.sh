@@ -5,5 +5,6 @@ export SLIMERJSLAUNCHER=/usr/bin/firefox
 
 /host/phantomjs/bin/phantomjs ${DIR}/job.js
 timeout 180 /host/phantomjs/casper/bin/casperjs selftest
+xvfb-run /host/phantomjs/slimer/slimerjs
 timeout 180 xvfb-run /host/phantomjs/casper/bin/casperjs selftest --engine=slimerjs
 python /host/phantomjs/selftest.py
